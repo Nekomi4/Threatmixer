@@ -3,11 +3,14 @@ Here, the selection screen is set up, which involves getting all of the region d
 of the region buttons work.
 */
 
-// Setting up the preview toggle
-createTippy(previewToggleButton, previewToggleButton.dataset.title, "#dadbdd");
-if (getLocalItem("previewsOn") === false) {
-    previewToggleIcon.src = "assets/images/button_icons/preview_disabled_icon.png";
-    updateTippyContent(previewToggleButton, "Preview Toggle (Off)");
+// preview constructor
+class Preview {
+    constructor(song, region, isFadingOut = false, isFadingIn = false) {
+        this.song = song,
+        this.region = region,
+        this.isFadingOut = isFadingOut,
+        this.isFadingIn = isFadingIn
+    }
 }
 
 function setUpSelectionScreen(regionData) {
@@ -21,7 +24,7 @@ function setUpSelectionScreen(regionData) {
     showScreen(loadingScreen);
     document.title = "Threatmixer - Selection Screen";
 
-    
+
         // figuring out how many regions there are of each group
         Array.from(filterLabels).forEach((label) => {
             const targetGroup = label.htmlFor.replace("_filter", "");
@@ -101,7 +104,20 @@ function setUpSelectionScreen(regionData) {
                     else {
                         region.favorited = false;
                         region.groups.pop();
-                        favoritedArray.splice(favoritedArray.indexOf(regionItem), 1);
+
+                        var removedRegionIndex;
+                        favoritedArray.forEach((region, index) => {
+                            const regionName = region[0],
+                                regionGroup = region[1],
+                                removedRegionName = regionItem[0],
+                                removedRegionGroup = regionItem[1];
+
+                            if (regionName === removedRegionName && regionGroup === removedRegionGroup && removedRegionIndex === undefined) {
+                                removedRegionIndex = index;
+                            }
+                        })
+
+                        favoritedArray.splice(removedRegionIndex, 1);
                         groupInfo.innerText = groupInfo.innerText.replace(", Favorites", "");
                     }
 
@@ -111,18 +127,9 @@ function setUpSelectionScreen(regionData) {
                 }
 
                 newRegionButton.appendChild(newFavoriteButton);
-
-                // adding song snippets for when you hover over buttons using howler
-                if (region.preview != undefined) {
-                    var songPreview =  new Howl({
-                        src: buildAudioSRC(region.preview),
-                        loop: true,
-                        onplay: () => {songPreview.fade(0, 1, 1000)},
-                        onstop: () => {previewIsFadingOut = false}
-                    })
-                }
-
                 buttonOverflow.appendChild(newRegionButton);
+
+                var songPreview = new Preview(null, region.name);
 
                 // giving each button hover events
                 newRegionButton.onmouseenter = () => {
@@ -169,18 +176,33 @@ function setUpSelectionScreen(regionData) {
                     regionCreditsInfo.innerText = `Region by: ${region.regionCredits}`;
                     artCreditsInfo.innerText = `Art by: ${region.artCredits}`;
 
-                    // fading in the song preview
+                    // creating the song preview
+                    if (region.preview !== undefined) {
+                        previousPreview?.song.stop();
+                        clearTimeout(fadeCheck);
+                        previousPreview = songPreview;
+                        songPreview.song = new Howl({
+                            src: buildAudioSRC(region.preview),
+                            loop: true,
+                            onplay: () => {songPreview.song.fade(0, 1, 1000)},
+                            onstop: () => {songPreview.isFadingOut = false;}
+                        })
+                    }
+                    
                     if (region.preview != "N/A" && previewCanPlay && !loadingRegion && previewsOn) {
-                        if (previewIsFadingOut) {
-                            try {currentPreviewPlaying.stop();}
-                            catch {console.log("Damn!!!!!!!! Slow down!!!!!!!");}
-                            clearTimeout(fadeCheck);
-                            previewIsFadingOut = false;
-                        }
+                        if (previousPreview !== undefined) {
+                            if (previousPreview.isFadingOut) {
+                                previousPreview.song.stop();
+                                clearTimeout(fadeCheck);
+                                previousPreview.isFadingOut = false;
+                            }
 
-                        if (!previewIsFadingOut && !songPreview.playing() && !loadingRegion && previewsOn) {
-                            songPreview.play();
-                            currentPreviewPlaying = songPreview;
+                            if (!previousPreview.isFadingOut && !songPreview.song.playing() && !loadingRegion && previewsOn) {
+                                songPreview.song.play();
+                            }
+                        }
+                        else {
+                            songPreview.song.play();
                         }
                     }
                 }
@@ -195,10 +217,10 @@ function setUpSelectionScreen(regionData) {
 
                     // fading out the song preview
                     if (region.preview != "N/A" && previewCanPlay) {
-                        previewIsFadingOut = true;
-                        songPreview.fade(1, 0, 1000)
+                        songPreview.isFadingOut = true;
+                        songPreview.song.fade(1, 0, 1000);
                         // waiting for the song to fully fade before stopping it
-                        fadeCheck = setTimeout(() => {songPreview.stop()}, 1000)
+                        fadeCheck = setTimeout(() => {songPreview.song.stop()}, 1000)
                     }
                 }
 
@@ -496,6 +518,7 @@ previewToggleButton.onclick = () => {
     if (!previewsOn) {
         previewToggleIcon.src = "assets/images/button_icons/preview_disabled_icon.png";
         updateTippyContent(previewToggleButton, "Preview Toggle (Off)");
+        Howler.stop()
     }
     else {
         previewToggleIcon.src = "assets/images/button_icons/preview_enabled_icon.png";

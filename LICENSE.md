@@ -14,6 +14,8 @@ You can also find me on the [Official Rain World Discord Server](https://discord
 - [ECSP](https://ecsp.dev/) (Personal Website): Pixel Art, Playtesting, & Creative Assistence
 - [ParraKoot](https://m.soundcloud.com/laurens-wallner-859047082) (Soundcloud): Main menu music, Playtesting, & Creative Assistence
 - [Budc](https://budc123.github.io/) (Personal Website): Code Assistence & Playtesting
+- [Melncat](https://github.com/MelnCat) (Github) Code Assistence, "Sharper Button Icons" merge pull
+- [Nekomi4](https://github.com/Nekomi4) (Github) Code Assistence, "Fix selection screen previews" merge pull
 
 ## Videocult
 
@@ -59,7 +61,7 @@ Here's a full list of everyone who's region, music, and/or art is shown in this 
 - [Don](https://www.youtube.com/@donschnulione6646) (Youtube)
 - Fishswallower
 - [Fishnoid](https://www.youtube.com/channel/UCG-mPR0LtVn4QX0QSmSwCjQ) (Youtube)
--[Gamerdog1654](https://steamcommunity.com/id/gamerdogdotcom) (Steam)
+- [Gamerdog1654](https://steamcommunity.com/id/gamerdogdotcom) (Steam)
 - [Henpemaz](https://www.youtube.com/@henpemaz) (Youtube)
 - [Hessi](https://www.youtube.com/@hessi_943/videos) (Youtube)
 - Inspectnerd
@@ -73,6 +75,7 @@ Here's a full list of everyone who's region, music, and/or art is shown in this 
 - Mikronaut
 - [MojiEmoji](https://www.youtube.com/@MojiEmoji) (Youtube)
 - [Mojosoup](https://x.com/MojoMojosoup) (Twitter)
+- [Mold223](https://steamcommunity.com/profiles/76561199567480000) (Steam)
 - [Myrmice](https://steamcommunity.com/id/myrmice/) (Steam)
 - [Myztileaf](https://steamcommunity.com/id/MyztiLeaf)
 - [Nautilo](https://www.youtube.com/@nautillo2481) (Youtube)
@@ -86,6 +89,7 @@ Here's a full list of everyone who's region, music, and/or art is shown in this 
 - [Roasted AND Toasted](https://www.youtube.com/@roastedandtoasted187/videos) (Youtube)
 - [Sako L Patatas](https://www.youtube.com/channel/UCSVoNhfzaXNclJG7U8GkoXA) (Youtube)
 - [SaykioPorko](https://www.youtube.com/channel/UCZZkji3lcDIY7h8T5C-WxIQ) (Youtube)
+- [Sequoia7](https://www.youtube.com/@Sequoia7_RW) (Youtube)
 - [Serpanoy](https://serpanoy.carrd.co/) (Personal Website)
 - [Snoodle](https://snoodle-stuff.carrd.co/) (Personal Website)
 - [Snugboat](https://x.com/SnugBoat11) (Twitter)
@@ -121,6 +125,10 @@ And here's the credits by region:
 - Region & Region Art by Fishnoid
 - Threat Theme by Snoodle
 
+## Bioengineering Center:
+- Region & Region Art by Mold223
+- Threat Theme by LudoCrypt
+
 ## Cliffside:
 - Region by Parageist
 - Region Art by Wolfycatt
@@ -133,7 +141,7 @@ And here's the credits by region:
 - Region & Region Art by Fishnoid
 - Threat Theme by Snoodle
 
-## Corroded Manufactory
+## Industrial Outflow
 - Region, Region Art, & Threat Theme by totallydutch
 
 ## Corroded Passage
@@ -201,6 +209,7 @@ And here's the credits by region:
 
 ## Luminous Cove:
 - Region by Myrmice
+- Region art by Beep
 - Threat Theme by Aki
 
 ## Lush Mire:
@@ -297,7 +306,8 @@ And here's the credits by region:
 - Region & Threat Theme by LudoCrypt
 
 ## Winter's End Regions
-- Regions & Threat Themes by Myztileaf
+- Regions by Myztileaf
+- Threat Themes by Sequoia7 & Roasted AND Toasted
 
 ## Weakened Platform
 - Region & Threat Theme by Alekus

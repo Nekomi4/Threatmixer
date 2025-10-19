@@ -82,7 +82,7 @@ let menuMusicTimeout,
     tippyLayerNames = [],
     volumeSliders = [];
 
-let regionThreatLayers, hoverCheck, currentPreviewPlaying, // selection screen
+let regionThreatLayers, hoverCheck, previousPreview, // selection screen
     noRegionsText, favFilterLabel,
     houseCount = 0,
     storedScrollPosition = buttonOverflow.scrollTop,
@@ -90,7 +90,6 @@ let regionThreatLayers, hoverCheck, currentPreviewPlaying, // selection screen
     menuMusicPlaying = false,
     clickOnTimeout = false,
     regionButtonClicked = false,
-    previewIsFadingOut = false,
     previewCanPlay = false,
     loadingRegion = false,
     regionCountFinished = false,
@@ -287,6 +286,13 @@ name2.onclick = () => {
     }
 }
 
+// Setting up the preview toggle
+createTippy(previewToggleButton, previewToggleButton.dataset.title, "#dadbdd");
+if (!previewsOn) {
+    previewToggleIcon.src = "assets/images/button_icons/preview_disabled_icon.png";
+    updateTippyContent(previewToggleButton, "Preview Toggle (Off)");
+}
+
 // MISC FUNCTIONS
 function defineMarkdownOnclick(button, parentContainer, childContainer) {
     button.onclick = () => {
@@ -453,7 +459,7 @@ function getLocalItem(item) {
         case ("previewsOn"):
             const returnedBool = localStorage.getItem(item);
             if (returnedBool === null) {return true;}
-            return returnedBool === true;
+            return returnedBool === "true";
         default:
             return null;
     }
